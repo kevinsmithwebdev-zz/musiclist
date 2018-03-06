@@ -12,6 +12,7 @@ export class ResetPasswordPageContainer extends React.Component {
     this.clearPasswordResetFunction = this.clearPasswordResetFunction.bind(this);
     this.resetPasswordRequest = this.resetPasswordRequest.bind(this);
   }
+
   clearPasswordResetFunction() {
     const { dispatch } = this.props;
     dispatch(passwordResetClear());

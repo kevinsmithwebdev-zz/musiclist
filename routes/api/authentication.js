@@ -1,10 +1,10 @@
-const appConfig = require('../../config.js')
+const appConfig = require('../../config.js');
 const crypto = require('crypto');
 const express = require('express');
 const mailgun = require('mailgun-js')({
   apiKey: appConfig.mailgun.apiKey,
   domain: appConfig.mailgun.domain,
-})
+});
 const mongoose = require('mongoose');
 const passport = require('passport');
 const User = require('../../models/user.js');
@@ -111,7 +111,7 @@ router.post('/savepassword', async (req, res) => {
       result = res.send(JSON.stringify({ error: 'Reset hash not found in database.' }));
     }
   } catch (err) {
-    result = res.send(JSON.stringify({ error: 'There was an error connecting to the database' }));
+    result = res.send(JSON.stringify({ error: 'There was an error connecting to the database.' }));
   }
   return result;
 });
@@ -138,11 +138,11 @@ router.post('/saveresethash', async (req, res) => {
 
       // Put together the email
       const emailData = {
-        from: 'CloseBrace <postmaster@${appConfig.mailgun.domain}>',
+        from: `CloseBrace <postmaster@${appConfig.mailgun.domain}>`,
         to: foundUser.email,
         subject: 'Reset Your Password',
         text: `A password reset has been requested for the MusicList account connected to this email address. If you made this request, please click the following link: https://musiclist.com/account/change-password/${foundUser.passwordReset} ... if you didn't make this request, feel free to ignore it!`,
-        html: `<p>A password reset has been requested for the MusicList account connected to this email address. If you made this request, please click the following link: <a href="https://musiclist.com/account/change-password/${foundUser.passwordReset}&quot; target="_blank">https://musiclist.com/account/change-password/${foundUser.passwordReset}</a>.</p><p>If you didn't make this request, feel free to ignore it!</p>`,
+        html: `<p>A password reset has been requested for the MusicList account connected to this email address. If you made this request, please click the following link: <a href="https://musiclist.com/account/change-password/${foundUser.passwordReset}" target="_blank">https://musiclist.com/account/change-password/${foundUser.passwordReset}</a>.</p><p>If you didn't make this request, feel free to ignore it!</p>`,
       };
 
       // Send it

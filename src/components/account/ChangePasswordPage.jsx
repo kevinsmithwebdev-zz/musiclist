@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import { Button, Label } from 'reactstrap';
 
@@ -41,7 +41,7 @@ export default class ChangePasswordPage extends React.Component {
 
   render() {
     const { isPasswordChanged, isLoggedIn } = this.props.authentication;
-    
+
     // If they just changed a password and AREN'T logged in
     if (isPasswordChanged && !isLoggedIn) {
       return (
@@ -69,6 +69,7 @@ export default class ChangePasswordPage extends React.Component {
         </div>
       );
     }
+
     return (
       <div className="row justify-content-center">
         <div className="col-10 col-sm-7 col-md-5 col-lg-4">
@@ -115,6 +116,7 @@ export default class ChangePasswordPage extends React.Component {
             <Button color="primary">Change Password</Button>
 
           </AvForm>
+
         </div>
       </div>
     );

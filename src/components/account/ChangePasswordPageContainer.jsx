@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { savePassword, savePasswordClear } from '../../actions/authentication';
+import { passwordSaveClear, savePassword } from '../../actions/authentication';
 
 import ChangePasswordPage from './ChangePasswordPage';
 
@@ -22,7 +22,7 @@ export class ChangePasswordPageContainer extends React.Component {
     const { dispatch } = this.props;
     const data = {
       hash: this.props.match.params.hash,
-      password
+      password,
     };
     dispatch(savePassword(data));
   }

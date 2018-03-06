@@ -1,12 +1,12 @@
 require('babel-register');
-const appConfig = require('./config.js')
+const appConfig = require('./config.js');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const expressSession = require('express-session')({
   secret: appConfig.expressSession.secret,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
 });
 const favicon = require('serve-favicon');
 const LocalStrategy = require('passport-local').Strategy;
@@ -21,10 +21,13 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const User = require('./models/user');
 
-const index = require('./routes/index');
+// Route Files
 const api = require('./routes/api/index');
-const users = require('./routes/api/users');
+const albums = require('./routes/api/albums');
+const artists = require('./routes/api/artists');
 const authentication = require('./routes/api/authentication');
+const index = require('./routes/index');
+const users = require('./routes/api/users');
 
 const app = express();
 
@@ -63,8 +66,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use('/api', api);
-app.use('/api/users', users);
+app.use('/api/albums', albums);
+app.use('/api/artists', artists);
 app.use('/api/authentication', authentication);
+app.use('/api/users', users);
 app.use('/*', index);
 
 // Configure Passport
